@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <!-- รองรับการแสดงผลบนมือถือ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการเงินกู้</title>
+    <style>
+        /* รีเซ็ตขอบหน้าจอ และป้องกันไม่ให้หน้าหลักเกิด Scroll */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f8f9fa; /* สีพื้นหลังกลืนกับระบบ */
+            overflow: hidden; 
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* เทคนิคซ่อนแถบสีฟ้าของ Google */
+        iframe {
+            position: absolute;
+            top: -36px; /* ดัน iframe ขึ้นไปด้านบน 36px (ความสูงของแถบแบนเนอร์พอดี) */
+            left: 0;
+            width: 100%;
+            height: calc(100% + 36px); /* เพิ่มความสูงชดเชยส่วนที่โดนดันขึ้นไป */
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <!-- นำ URL Web App ของคุณมาใส่ตรง src -->
+        <iframe src="https://script.google.com/macros/s/AKfycbwsM7sL5OUbc775OadzSi6wLOgaNPJ5BqQIy-XG4j2yHUS3CBK44UsJkDf30bNw8xxd/exec"></iframe>
+    </div>
+</body>
+</html>
