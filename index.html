@@ -2,45 +2,50 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <!-- รองรับการแสดงผลบนมือถือ -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- บังคับไม่ให้มือถือซูมหน้าจอเอง ซึ่งจะทำให้ iframe ล้นกรอบ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dashboard ระบบส่วนตัว</title>
-    <!-- ไอคอนสำหรับแถบไตเติ้ลเบราว์เซอร์ -->
     <link rel="icon" type="image/png" href="https://geccc.msu.ac.th/academic/panupol.png">
-    
-    <!-- ไอคอนสำหรับเวลาผู้ใช้กดเพิ่มลงหน้าจอมือถือ (Add to Home Screen) -->
     <link rel="apple-touch-icon" href="https://geccc.msu.ac.th/academic/panupol.png">
+    
     <style>
-        /* รีเซ็ตขอบหน้าจอ และป้องกันไม่ให้หน้าหลักเกิด Scroll */
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            background-color: #f8f9fa; /* สีพื้นหลังกลืนกับระบบ */
+            width: 100%;
+            background-color: #f8f9fa;
+            /* ล็อกหน้าจอหลักไม่ให้เลื่อน */
             overflow: hidden; 
+            /* รองรับเบราว์เซอร์เก่า */
+            height: 100vh;
+            /* รองรับเบราว์เซอร์มือถือใหม่ (Dynamic Viewport) แก้ปัญหาแถบ URL บัง */
+            height: 100dvh; 
         }
 
         .iframe-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
         }
 
-        /* เทคนิคซ่อนแถบสีฟ้าของ Google */
         iframe {
             position: absolute;
-            top: -36px; /* ดัน iframe ขึ้นไปด้านบน 36px */
+            top: -36px; /* ดัน iframe ขึ้นไปซ่อนแถบ Google */
             left: 0;
             width: 100%;
-            height: calc(100% + 36px); /* ชดเชยความสูงให้พอดีกับหน้าจอ */
+            /* ชดเชยความสูง 36px ที่โดนดันขึ้นไป (ใช้ dvh เป็นหลัก) */
+            height: calc(100vh + 36px); /* Fallback */
+            height: calc(100dvh + 36px); /* Modern Mobile */
             border: none;
         }
     </style>
 </head>
 <body>
-    <!-- เอา <br> ออก เพื่อไม่ให้คอนเทนเนอร์ถูกดันลงไปจนตกขอบ -->
     <div class="iframe-container">
-        <!-- ลบ style="..." ในแท็กนี้ออก เพื่อให้มันทำงานตาม CSS ด้านบนแทน -->
+        <!-- ไม่ต้องใส่ style ในบรรทัดนี้แล้ว ให้มันวิ่งไปอ่านจาก <style> ด้านบนแทน -->
         <iframe src="https://script.google.com/macros/s/AKfycbw2YKevWz0YZ8HkvJUXGzUb0N8W6gly7zdCJUfXvAKsVEfTRra3YULU3ZdALwIj1I08/exec"></iframe>
     </div>
 </body>
